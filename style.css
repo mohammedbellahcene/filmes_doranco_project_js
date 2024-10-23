@@ -4,9 +4,25 @@
 
 }
 h1{
-    color:red;
+  
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.btns{
+    text-align: center;
+    margin-top: 50px;
+}
+button{
+    width:150px;
+    padding:5px;
+    background-color: #555;
+    color:white;
+    border-radius: 30px;
+    background-color: red;
+    border: none;
+    cursor:pointer;
+
 }
 .container{
     display: flex;
