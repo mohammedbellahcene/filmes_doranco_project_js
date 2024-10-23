@@ -23,6 +23,7 @@ async function getData(type){
     console.log(results)
     titrePrincipal.innerHTML=`List of ${type=="top_rated"? "top rated":type } films page 1.`
     //containerFilms.insertAdjacentHTML("beforebegin",h1)
+    let contenu="";
     containerFilms.innerHTML=results.map ((film,index)=>`
         <article class="cardfilm">
                 
@@ -34,7 +35,7 @@ async function getData(type){
                 </div>
        
       </article>`).join(""); 
-      //return containerFilms.innerHTML;   
+       
 }
 btnPoular.addEventListener("click",()=>getData("popular"));
 btnrated.addEventListener("click",()=>getData("top_rated"));
