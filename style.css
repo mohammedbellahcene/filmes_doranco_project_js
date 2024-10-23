@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding:0;
+
+}
+h1{
+    color:red;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.container{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 15px;
+    font-size: 16px;
+    margin-top: 10px;
+  
+}
+
+
+
+
+.cardfilm{
+    display:flex;
+    border:2px solid black;
+    width: 40%;
+    height:20vw;
+    justify-content:space-between ;
+    column-gap: 10px;
+    box-shadow: -5px 5px gray;
+    cursor: pointer;
+    overflow-y:scroll;    
+}
+.description{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin:50px 0;
+}
+
+img{
+   
+    object-fit: cover;
+}
