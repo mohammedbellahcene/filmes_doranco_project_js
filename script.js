@@ -4,6 +4,7 @@ const btnPoular=document.querySelector(".popular");
 const btnrated=document.querySelector(".rated");
 const btnupcoming=document.querySelector(".upcoming");
 const titrePrincipal=document.querySelector("h1");
+let tabCards=[];
 
 
 const optionsAll = {
@@ -23,8 +24,10 @@ async function getData(type){
     console.log(results)
     titrePrincipal.innerHTML=`List of ${type=="top_rated"? "top rated":type } films page 1.`
     //containerFilms.insertAdjacentHTML("beforebegin",h1)
-    let contenu="";
-    containerFilms.innerHTML=results.map ((film,index)=>`
+    
+   results.map ((film,index)=>{
+    
+    let cardhtml= `
         <article class="cardfilm">
                 
                  <img src="${preposter}${film.poster_path}" alt="">
@@ -34,12 +37,24 @@ async function getData(type){
                     <p>${film.overview}</p>
                 </div>
        
-      </article>`).join(""); 
+      </article>`;
+      
+      containerFilms.insertAdjacentHTML("beforeend",cardhtml);
+      let carte=document.querySelector(".cardfilm")
+      carte.setAttribute("id",`${index}`)
+      tabCards.push(document.getElementById(`${index}`))
+     tabCards[index].addEventListener("click",()=> console.log(film.original_title))
+     
+    
+   
+      
+}); 
        
 }
-btnPoular.addEventListener("click",()=>getData("popular"));
-btnrated.addEventListener("click",()=>getData("top_rated"));
-btnupcoming.addEventListener("click",()=>getData("upcoming"));
+btnPoular.addEventListener("click",()=>{containerFilms.innerHTML="";getData("popular")});
+btnrated.addEventListener("click",()=>{containerFilms.innerHTML="";getData("top_rated")});
+btnupcoming.addEventListener("click",()=>{containerFilms.innerHTML="";getData("upcoming")});
+console.log(tabCards)
 //getData("popular");
 
 
