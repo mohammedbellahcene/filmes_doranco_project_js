@@ -40,7 +40,6 @@ button{
 
 
 
-
 .cardfilm{
     display:flex;
     border:2px solid black;
@@ -79,6 +78,10 @@ img{
     background-color: rgba(0, 0, 0, 0.8);
     padding-top: 30px;
    color:white;
+   opacity:0;
+   z-index: -1;
+   
+  
    
 }
 .modal>.cardfilm{
@@ -98,3 +101,19 @@ img{
 .modal>.cardfilm>.description>h2{
     margin-bottom: 20px;
 }
+@media screen and (max-width : 1024px){
+    .cardfilm{
+        display:flex;
+        border:2px solid black;
+        width: 100%;
+        /*height:20vw;*/
+        justify-content:space-between ;
+        column-gap: 10px;
+        box-shadow: -5px 5px gray;
+        cursor: pointer;
+        overflow:hidden;    
+    }
+
+}
+
+
