@@ -4,6 +4,8 @@ const btnPoular=document.querySelector(".popular");
 const btnrated=document.querySelector(".rated");
 const btnupcoming=document.querySelector(".upcoming");
 const titrePrincipal=document.querySelector("h1");
+const modale=document.querySelector(".modal");
+let results;
 let tabCards=[];
 
 
@@ -28,7 +30,7 @@ async function getData(type){
    results.map ((film,index)=>{
     
     let cardhtml= `
-        <article class="cardfilm">
+        <article class="cardfilm" id="${index}">
                 
                  <img src="${preposter}${film.poster_path}" alt="">
                 
@@ -39,22 +41,31 @@ async function getData(type){
        
       </article>`;
       
-      containerFilms.insertAdjacentHTML("beforeend",cardhtml);
-      let carte=document.querySelector(".cardfilm")
-      carte.setAttribute("id",`${index}`)
-      tabCards.push(document.getElementById(`${index}`))
-     tabCards[index].addEventListener("click",()=> console.log(film.original_title))
-     
-    
-   
+      containerFilms.insertAdjacentHTML("beforeend",cardhtml); 
       
+        let carte=document.getElementById(`${index}`);
+        modalhtml=`
+        <article class="cardfilm" id="${index}">
+                
+                 <img src="${preposter}${film.poster_path}" alt="">
+                
+                <div class="description">
+                    <h2>${film.original_title}</h2>
+                    <p>${film.overview}</p>
+                </div>
+       
+      </article>`;
+        carte.addEventListener("click",()=>{modale.style.opacity=0.9;modale.style.zIndex=1000;modale.innerHTML=cardhtml})
+        //console.log(carte);
+        tabCards.push(carte) ;      
 }); 
        
 }
-btnPoular.addEventListener("click",()=>{containerFilms.innerHTML="";getData("popular")});
+btnPoular.addEventListener("click",()=>{containerFilms.innerHTML="";getData("popular");});
 btnrated.addEventListener("click",()=>{containerFilms.innerHTML="";getData("top_rated")});
 btnupcoming.addEventListener("click",()=>{containerFilms.innerHTML="";getData("upcoming")});
-console.log(tabCards)
+modale.addEventListener("click",(e)=>{e.target.style.opacity=0;e.target.style.zIndex=-1})
+//console.log(tabCards)
 //getData("popular");
 
 
