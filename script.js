@@ -5,7 +5,8 @@ const btnupcoming = document.querySelector(".upcoming");
 const titrePrincipal = document.querySelector("h1");
 const modale = document.querySelector(".modal");
 const carteModal = document.querySelector(".modal");
-let results;
+const clos = document.querySelector(".close");
+//let results;
 let tabCards = [];
 
 // Récupération de la clé de l'api et un authorization
@@ -31,7 +32,6 @@ async function getData(type) {
   titrePrincipal.innerHTML = `List of ${
     type == "top_rated" ? "top rated" : type
   } films page 1.`;
-  //containerFilms.insertAdjacentHTML("beforebegin",h1)
 
   results.map((film, index) => {
     let cardhtml = `
@@ -49,39 +49,33 @@ async function getData(type) {
     containerFilms.insertAdjacentHTML("beforeend", cardhtml);
 
     let carte = document.getElementById(`${index}`);
-    modalhtml = `
-        <article class="cardfilm" id="${index}">
-                
-                 <img src="${preposter}${film.poster_path}" alt="">
-                
-                <div class="description">
-                    <h2>${film.original_title}</h2>
-                    <p>${film.overview}</p>
-                </div>
-       
-      </article>`;
+
     carte.addEventListener("click", () => {
-      modale.style.opacity = 0.9;
+      // modale.style.opacity = 0.9;
+      modale.style.display = "block";
       modale.style.zIndex = 1000;
-      modale.innerHTML = cardhtml;
+      modale.innerHTML = `<div class="close">X</div>${cardhtml}`;
     });
 
     tabCards.push(carte);
   });
 }
-btnPoular.addEventListener("click", () => {
+function btnClick(type) {
   containerFilms.innerHTML = "";
-  getData("popular");
+  getData(type);
+}
+btnPoular.addEventListener("click", () => {
+  btnClick("popular");
 });
 btnrated.addEventListener("click", () => {
-  containerFilms.innerHTML = "";
-  getData("top_rated");
+  btnClick("top_rated");
 });
 btnupcoming.addEventListener("click", () => {
-  containerFilms.innerHTML = "";
-  getData("upcoming");
+  btnClick("upcoming");
 });
+
 modale.addEventListener("click", (e) => {
-  e.target.style.opacity = 0;
+  //e.target.style.opacity = 0;
+  modale.style.display = "none";
   e.target.style.zIndex = -1;
 });
